@@ -16,88 +16,86 @@ def map_contact_to_client(contact, field_mapping):
     Returns:
         dict: The IntakeQ client data
     """
-    logging.info(f"Mapping contact {contact['id']} to IntakeQ client")
+    logging.info(f"Mapping contact {contact.get('id')} to IntakeQ client")
     
     # Initialize client data with only required fields
-    first_name = contact.get("firstName", "")
-    last_name = contact.get("lastName", "")
+    # Handle both camelCase (webhook) and snake_case (direct) formats
+    first_name = contact.get("firstName") or contact.get("first_name") or ""
+    last_name = contact.get("lastName") or contact.get("last_name") or ""
     full_name = f"{first_name} {last_name}".strip()
     
     # Start with minimal required fields
     client_data = {
-        "firstName": first_name,
-        "lastName": last_name,
-        "name": full_name,
+        "FirstName": first_name,
+        "LastName": last_name,
+        "Name": full_name,
+        "Email": (contact.get("email") or contact.get("Email") or "").strip(),
+        "Phone": (contact.get("phone") or contact.get("Phone") or "").strip(),
+        "City": (contact.get("city") or contact.get("City") or "").strip(),
+        "StateShort": (contact.get("state") or contact.get("State") or "").strip(),
+        "PostalCode": (contact.get("postalCode") or contact.get("postal_code") or "").strip(),
+        "Country": (contact.get("country") or contact.get("Country") or "USA").strip(),
+        "CustomFields": []
     }
     
-    # Only add non-empty fields from standard mapping
-    for ghl_field, intakeq_field in field_mapping["gohighlevel_to_intakeq"].items():
-        value = contact.get(ghl_field, "")
-        if value:  # Only add if value is not empty
-            client_data[intakeq_field] = value
+    # Map specific fields we care about with their IntakeQ field IDs
+    field_mappings = {
+        "Height Feet": {"FieldId": "sotc", "Value": None},
+        "Height Inches": {"FieldId": "o0a0", "Value": None},
+        "BMI": {"FieldId": "gcf3", "Value": None},
+        "Current Weight?": {"FieldId": "n0dx", "Value": None},
+        "Target Weight": {"FieldId": "fovf", "Value": None}
+    }
     
-    # Extract additional fields from custom fields, only if they have values
-    custom_fields_data = {}
-    for custom_field in contact.get("customFields", []):
-        field_key = custom_field.get("key", "")
-        field_value = custom_field.get("field_value", "")
-        
-        # Only add fields that have values
-        if field_value:
-            if field_key == "date_of_birth":
-                client_data["dateOfBirth"] = field_value
-            elif field_key == "marital_status":
-                client_data["maritalStatus"] = field_value
-            elif field_key == "home_phone":
-                client_data["homePhone"] = field_value
-            elif field_key == "work_phone":
-                client_data["workPhone"] = field_value
-            elif field_key == "apt_unit":
-                client_data["aptUnit"] = field_value
-            elif field_key == "referring_provider":
-                client_data["referringProvider"] = field_value
-            elif field_key == "emergency_contact_name":
-                client_data["emergencyContactName"] = field_value
-            elif field_key == "emergency_contact_phone":
-                client_data["emergencyContactPhone"] = field_value
-            elif field_key == "emergency_contact_relationship":
-                client_data["emergencyContactRelationship"] = field_value
-            elif field_key == "height_feet":
-                custom_fields_data["heightFeet"] = field_value
-            elif field_key == "height_inches":
-                custom_fields_data["heightInches"] = field_value
-            elif field_key == "bmi":
-                custom_fields_data["bmi"] = field_value
-            elif field_key == "referral_source":
-                custom_fields_data["referralSource"] = field_value
-            elif field_key == "body_mass_reduction_percentage":
-                custom_fields_data["bodyMassReductionPercentage"] = field_value
-            elif field_key == "current_weight_loss_medication":
-                custom_fields_data["currentWeightLossMedication"] = field_value
-            elif field_key == "tracking":
-                custom_fields_data["tracking"] = field_value
-            
-            # Store all custom fields with values
-            custom_fields_data[field_key] = field_value
-    
-    # Add custom fields to client data if there are any
-    if custom_fields_data:
-        client_data["customFields"] = custom_fields_data
-    
-    # Extract location and treatment from custom fields for tags
-    tags = []
-    custom_field_mapping = field_mapping["custom_fields"]
+    # Extract values from custom fields
+    height_feet = None
+    height_inches = None
+    weight = None
     
     for custom_field in contact.get("customFields", []):
         field_key = custom_field.get("key")
-        field_value = custom_field.get("field_value", "")
+        field_value = custom_field.get("field_value")
         
-        if field_key in custom_field_mapping and field_value:
-            # Only add non-empty tag values
-            tags.append(field_value)
+        # Store height and weight values for BMI calculation
+        if field_key == "Height Feet":
+            height_feet = float(field_value) if field_value else None
+        elif field_key == "Height Inches":
+            height_inches = float(field_value) if field_value else None
+        elif field_key == "Current Weight?":
+            weight = float(field_value) if field_value else None
+            
+        # Update field mappings
+        if field_key in field_mappings:
+            field_mappings[field_key]["Value"] = field_value
     
-    # Add tags to client data if there are any
-    if tags:
-        client_data["tags"] = tags
+    # Calculate BMI if we have both height and weight
+    if height_feet is not None and height_inches is not None and weight is not None:
+        # Convert height to inches
+        total_inches = (height_feet * 12) + height_inches
+        # BMI formula: (weight in pounds * 703) / (height in inches)²
+        bmi = round((weight * 703) / (total_inches * total_inches), 1)
+        field_mappings["BMI"]["Value"] = str(bmi)
+        logging.info(f"Calculated BMI: {bmi}")
     
+    # Add any non-empty custom fields to the request
+    for field_name, field_data in field_mappings.items():
+        if field_data["Value"]:
+            client_data["CustomFields"].append({
+                "FieldId": field_data["FieldId"],
+                "Value": str(field_data["Value"])
+            })
+    
+    # Map location data
+    if "location" in contact:
+        location = contact["location"]
+        if location:
+            client_data["City"] = location.get("city", "").strip()
+            client_data["StateShort"] = location.get("state", "").strip()
+            client_data["PostalCode"] = location.get("postalCode", "").strip()
+            client_data["Country"] = location.get("country", "USA").strip()
+    
+    # Remove any empty values
+    client_data = {k: v for k, v in client_data.items() if v}
+    
+    logging.debug(f"Mapped client data: {client_data}")
     return client_data

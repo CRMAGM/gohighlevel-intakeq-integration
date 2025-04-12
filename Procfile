@@ -1,1 +1,1 @@
-web: python3 main.py 
+web: gunicorn src.api.webhook_server:app 

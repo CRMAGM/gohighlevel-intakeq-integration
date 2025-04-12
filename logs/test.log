@@ -1,0 +1,35 @@
+2025-04-11 01:15:20,038 - root - INFO - Testing IntakeQ API connection
+2025-04-11 01:15:20,204 - root - INFO - Successfully connected to IntakeQ API
+2025-04-11 01:15:20,205 - root - INFO - Simulating webhook event: contact.tag.added with 'paid' tag
+2025-04-11 01:15:20,205 - root - INFO - Processing webhook
+2025-04-11 01:15:20,205 - root - INFO - Getting contact sample_contact_123 from GoHighLevel
+2025-04-11 01:15:20,205 - root - INFO - Mapping contact 1872 to IntakeQ client
+2025-04-11 01:15:20,206 - root - INFO - Extracted GLP-1 field: current_weight = 
+2025-04-11 01:15:20,206 - root - INFO - Extracted GLP-1 field: target_weight = 
+2025-04-11 01:15:20,206 - root - INFO - Extracted GLP-1 field: check_all_that_apply_in_the_past_2_weeks_other = Headache, Fatigue
+2025-04-11 01:15:20,206 - root - INFO - Extracted GLP-1 field: if_yes_which_glp1_medication = Ozempic
+2025-04-11 01:15:20,206 - root - INFO - Extracted GLP-1 field: have_you_ever_been_diagnosed_with_any_of_the_following_conditions = Hypertension, Diabetes
+2025-04-11 01:15:20,206 - root - INFO - Extracted GLP-1 field: what_brings_you_here_today = Weight loss management
+2025-04-11 01:15:20,206 - root - INFO - Found 6 GLP-1 custom fields
+2025-04-11 01:15:20,206 - root - INFO - Creating client in IntakeQ: Rolanda Green
+2025-04-11 01:15:20,349 - root - ERROR - Failed to create client in IntakeQ: {"ClientId":1872,"Name":"Rolanda Green","FirstName":"Rolanda","LastName":"Green","MiddleName":null,"Email":"mz_green174@yahoo.com","Phone":"7737262196","DateOfBirth":null,"MaritalStatus":null,"Gender":"Female","Tags":["advantage","semaglutide"],"Archived":false,"HomePhone":"","WorkPhone":"","MobilePhone":"7737262196","Address":"","UnitNumber":null,"StreetAddress":null,"City":"","State":"","PostalCode":null,"Country":null,"StateShort":null,"AdditionalInformation":null,"BillingType":0,"PrimaryInsuranceCompany":null,"PrimaryInsurancePayerId":null,"PrimaryInsurancePolicyNumber":null,"PrimaryInsuranceGroupNumber":null,"PrimaryInsuranceHolderName":null,"PrimaryInsuranceRelationship":null,"PrimaryInsuranceHolderDateOfBirth":null,"PrimaryRelationshipToInsured":null,"SecondaryInsuranceCompany":null,"SecondaryInsurancePayerId":null,"SecondaryInsurancePolicyNumber":null,"SecondaryInsuranceGroupNumber":null,"SecondaryInsuranceHolderName":null,"SecondaryInsuranceRelationship":null,"SecondaryInsuranceHolderDateOfBirth":null,"SecondaryRelationshipToInsured":null,"DateCreated":1744333230703.0,"LastActivityDate":1744333230703.0,"PractitionerId":"67ba24dc465d1c94a06c76b8","CustomFields":[{"FieldId":"EmergencyContactName","Text":"Emergency Contact Name","Value":null},{"FieldId":"EmergencyContactPhone","Text":"Emergency Contact Phone #","Value":null},{"FieldId":"EmergencyContactRelationship","Text":"Emergency Contact Relationship","Value":null},{"FieldId":"sotc","Text":"Height Feet","Value":null},{"FieldId":"o0a0","Text":"Height Inches","Value":null},{"FieldId":"gcf3","Text":"BMI","Value":null},{"FieldId":"n0dx","Text":"Current Weight?","Value":null},{"FieldId":"fovf","Text":"Target Weight","Value":null},{"FieldId":"ng0z","Text":"Referral Source","Value":null},{"FieldId":"59d4","Text":"% of Body Mass Reduction","Value":null},{"FieldId":"9dmc","Text":"Current Weight Loss Medication","Value":null},{"FieldId":"vr53","Text":"Dose","Value":null},{"FieldId":"i5ju","Text":"State","Value":null},{"FieldId":"ku5d","Text":"Tracking","Value":null},{"FieldId":"qaou","Text":"is_pregnant","Value":null},{"FieldId":"lez9","Text":"is_men2","Value":null},{"FieldId":"ocyx","Text":"is_thyroid_cancer","Value":null},{"FieldId":"6cia","Text":"HeyflowID","Value":null},{"FieldId":"8fjy","Text":"State_options","Value":null},{"FieldId":"787z","Text":"Disqualifiers","Value":null},{"FieldId":"5v9s","Text":"Interested in 1","Value":null},{"FieldId":"3wkv","Text":"Interested in 2","Value":null},{"FieldId":"fudl","Text":"Currently Taking","Value":null},{"FieldId":"swui","Text":"Currently Taking not listed","Value":null}],"Guid":"670bcd9c-e22d-447a-a623-bb428805704f","LastUpdateDate":1744348520317.6597,"StripeCustomerId":null,"SquareCustomerId":null,"TimezoneId":null,"PrimaryInsurancePlan":null,"PrimaryInsuredGender":null,"PrimaryInsuredCity":null,"PrimaryInsuredZipCode":null,"PrimaryInsuredState":null,"PrimaryInsuredStreetAddress":null,"ExternalClientId":null,"CreditBalance":0.0,"LastActivityName":"Client Added","ParentClientId":null,"LinkedClients":[]}
+2025-04-11 01:15:20,349 - root - ERROR - Error processing webhook: 'id'
+2025-04-11 01:21:56,802 - root - INFO - Testing IntakeQ API connection
+2025-04-11 01:21:57,031 - root - INFO - Successfully connected to IntakeQ API
+2025-04-11 01:21:57,032 - root - INFO - Simulating webhook event: contact.tag.added with 'paid' tag
+2025-04-11 01:21:57,032 - root - INFO - Processing webhook
+2025-04-11 01:21:57,033 - root - INFO - Getting contact sample_contact_123 from GoHighLevel
+2025-04-11 01:21:57,033 - root - INFO - Mapping contact 1872 to IntakeQ client
+2025-04-11 01:21:57,033 - root - INFO - Extracted GLP-1 field: current_weight = 
+2025-04-11 01:21:57,033 - root - INFO - Extracted GLP-1 field: target_weight = 
+2025-04-11 01:21:57,034 - root - INFO - Extracted GLP-1 field: check_all_that_apply_in_the_past_2_weeks_other = Headache, Fatigue
+2025-04-11 01:21:57,034 - root - INFO - Extracted GLP-1 field: if_yes_which_glp1_medication = Ozempic
+2025-04-11 01:21:57,034 - root - INFO - Extracted GLP-1 field: have_you_ever_been_diagnosed_with_any_of_the_following_conditions = Hypertension, Diabetes
+2025-04-11 01:21:57,034 - root - INFO - Extracted GLP-1 field: what_brings_you_here_today = Weight loss management
+2025-04-11 01:21:57,034 - root - INFO - Found 6 GLP-1 custom fields
+2025-04-11 01:21:57,034 - root - INFO - Creating client in IntakeQ: Rolanda Green
+2025-04-11 01:21:57,122 - root - INFO - Adding tags to client 670bcd9c-e22d-447a-a623-bb428805704f: ['Downtown', 'Weight Loss']
+2025-04-11 01:21:57,160 - root - INFO - Successfully added tag Downtown to client 670bcd9c-e22d-447a-a623-bb428805704f
+2025-04-11 01:21:57,203 - root - INFO - Successfully added tag Weight Loss to client 670bcd9c-e22d-447a-a623-bb428805704f
+2025-04-11 01:21:57,204 - root - INFO - Submitting form data for client 670bcd9c-e22d-447a-a623-bb428805704f: GLP-1 Intake Questions Medical History
+2025-04-11 01:21:57,250 - root - INFO - Webhook processing result: {'status': 'success', 'gohighlevel_contact_id': 'sample_contact_123', 'intakeq_client_id': '670bcd9c-e22d-447a-a623-bb428805704f', 'glp1_fields_mapped': 6}

@@ -1,0 +1,31 @@
+{
+  "app": {
+    "name": "GoHighLevel to IntakeQ Integration",
+    "version": "0.1.0"
+  },
+  "field_mapping": {
+    "gohighlevel_to_intakeq": {
+      "firstName": "firstName",
+      "lastName": "lastName",
+      "email": "email",
+      "phone": "phone",
+      "address1": "address",
+      "city": "city",
+      "state": "state",
+      "postalCode": "zipCode"
+    },
+    "custom_fields": {
+      "location": "location_tag",
+      "treatment": "treatment_tag"
+    }
+  },
+  "webhook": {
+    "events": [
+      "contact.tag.added"
+    ]
+  },
+  "retry": {
+    "max_attempts": 3,
+    "backoff_factor": 2
+  }
+}

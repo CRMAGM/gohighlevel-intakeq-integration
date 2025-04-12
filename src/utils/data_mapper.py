@@ -44,7 +44,30 @@ def map_contact_to_client(contact, field_mapping):
         "Height Inches": {"FieldId": "o0a0", "Value": None},
         "BMI": {"FieldId": "gcf3", "Value": None},
         "Current Weight?": {"FieldId": "n0dx", "Value": None},
-        "Target Weight": {"FieldId": "fovf", "Value": None}
+        "Target Weight": {"FieldId": "fovf", "Value": None},
+        "Current Weight Loss Medication": {"FieldId": "9dmc", "Value": None},
+        "Dose": {"FieldId": "vr53", "Value": None},
+        "State": {"FieldId": "i5ju", "Value": None},
+        "Tracking": {"FieldId": "ku5d", "Value": None},
+        "State?": {"FieldId": "8fjy", "Value": None},
+        
+        "Weight Loss Goal?": {"FieldId": "weight_loss_goal", "Value": None},
+        "Goal?": {"FieldId": "goal", "Value": None},
+        "By When would you like to acheive this result?": {"FieldId": "goal_timeline", "Value": None},
+        "If you qualify how soon would you like to get started?": {"FieldId": "start_timeline", "Value": None},
+        "Have you been diagnosed with any of the following conditions?": {"FieldId": "medical_conditions", "Value": None},
+        "Are you currently taking any PRESCRIPTION medications for weight loss?": {"FieldId": "current_prescriptions", "Value": None},
+        "Please enter the details of any allergies": {"FieldId": "allergies", "Value": None},
+        "Have you ever been diagnosed with any of the following conditions below?": {"FieldId": "medical_history", "Value": None},
+        "What brings you here today?": {"FieldId": "reason_for_visit", "Value": None},
+        "Any past surgeries?": {"FieldId": "past_surgeries", "Value": None},
+        "Social History": {"FieldId": "social_history", "Value": None},
+        "Any major health issues in your immediate family (parents/siblings)?": {"FieldId": "family_history", "Value": None},
+        "List any prescription, OTC, or supplements you take regularly.": {"FieldId": "current_medications", "Value": None},
+        "Any medication allergies?": {"FieldId": "medication_allergies", "Value": None},
+        "What diets or programs have you tried in the past?": {"FieldId": "past_diets", "Value": None},
+        "Have you had success with any previous weight loss programs or medications?": {"FieldId": "past_success", "Value": None},
+        "Are you currently tracking your food or calorie intake?": {"FieldId": "tracking_food", "Value": None}
     }
     
     # Extract values from custom fields
